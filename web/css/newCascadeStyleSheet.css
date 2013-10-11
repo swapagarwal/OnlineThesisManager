@@ -1,0 +1,36 @@
+/* 
+    Document   : newCascadeStyleSheet
+    Created on : Oct 30, 2011, 7:11:53 PM
+    Author     : Shirshendu Das (shirshendu.iitg[at]gmail.com)
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+root { 
+    display: block;
+}
+
+#test{
+    text-align: center;color: #006600;font-family: Verdana,Arial,Helvetica,sans-serif;font-size: 18px;
+}
+#tt{
+    text-align: left;float: left;color: black;font-family: Verdana,Arial,Helvetica,sans-serif;font-size: 14px;width: 300px;
+}
+#yy{
+    text-align: justify;float: left;color: black;font-family: Verdana,Arial,Helvetica,sans-serif;font-size: 14px;width: 420px;
+    
+    border-right-style: solid;
+    border-left-style: solid;
+    border-bottom-style: solid;
+    border-top-style: solid;
+    border-right-width: 2px;
+    border-left-width: 2px;
+    border-bottom-width: 2px;
+    border-top-width: 2px;
+}
+

@@ -1,0 +1,64 @@
+/* 
+    Document   : adminStudentStyleSheet
+    Created on : Oct 29, 2011, 3:09:52 PM
+    Author     : Shirshendu Das (shirshendu.iitg[at]gmail.com)
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+#studentContentHeader{
+    width: inherit;
+    height: 30px;
+    width: 730px;
+    color: #990000;
+    text-align: center;
+    padding-top: 10px;
+    font-family: Verdana,Arial,Helvetica,sans-serif;
+    font-size: 16px;
+    border-bottom-style: dotted;
+    border-bottom-width: 3px;
+    border-bottom-color: #009933;
+}
+
+#studentTableContatiner{
+    width: inherit;
+    text-align: center;
+}
+
+#studentListingResult{
+    border-top-style: dotted;
+    border-top-width: 3px;
+    border-top-color: #009933;
+}
+
+
+
+.formTable{
+    width: 700px;
+}
+.formTableRow{
+    width: 700px;
+}
+.formTableColLabel{
+    width: 150px;
+    text-align: right;
+    padding-right: 10px;
+    color: #47943d;
+}
+.formTableColField{
+    width: 300px;
+    padding-right: 10px;
+    text-align: left;
+}
+.formTableColHelp{
+    width: 250px;
+    text-align: left;
+    color: grey;
+    font-style: italic;
+    font-size: 14px;
+}

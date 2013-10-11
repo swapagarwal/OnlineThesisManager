@@ -1,0 +1,156 @@
+/* 
+    Document   : AdminStyleSheet
+    Created on : Oct 29, 2011, 10:23:49 AM
+    Author     : Shirshendu Das (shirshendu.iitg[at]gmail.com)
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+html, body{ 
+    margin:0; 
+    padding:10px; 
+    text-align:center; 
+    
+    /*    background-color: #ffffff;*/
+/*    background-image: url(../images/water028.gif);*/
+}
+
+#bodyPanel{
+    width:940px; 
+    text-align:left; 
+    margin:0 auto; 
+    border-style:solid;
+    border-width:2px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px; 
+    background-color: #ffffff;
+}
+
+#adminHeader{
+    width: inherit;
+    height: 100px;
+    background-color: #006600;
+    text-align: center;
+    
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    border-bottom-color: #990000;
+    background-image: url(../images/background_logo_2.jpg);
+}
+
+#adminVMenu{
+    float: left;
+    width: 200px;
+    padding-top: 30px;
+    background-color: #ffffff;
+    min-height: 570px;
+    text-align: center;
+    
+}
+
+#adminMiddle{
+    padding-left: 210px;
+    width: 730px;
+    background-color: #ffffff;
+    min-height: 600px;
+}
+
+#adminFooter{
+    width: inherit;
+    height: 25px;
+    text-align: center;
+    background-image: url(../images/background_logo_2.jpg);
+}
+
+#adminVMenuItem{
+    width: inherit;
+    color: darkgreen;
+    font-family: cursive;
+    padding-top: 10px;
+    border-bottom-style: double;
+    border-bottom-width: 4px;
+    border-bottom-color: #990033;
+}
+
+#adminHeaderTitle{
+    width: inherit;
+    height: 40px;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    text-align: center;
+    font-family: Verdana,Arial,Helvetica,sans-serif;
+    font-size: 20px;
+    color: #ffffff;
+}
+
+#adminHeaderLocation{
+    width: inherit;
+    text-align: center;
+    font-family: Verdana,Arial,Helvetica,sans-serif;
+    font-size: 16px;
+    color: black;
+}
+
+#adminMiddleContent{
+    width: 730px;
+}
+
+
+#adminMiddleHeader{
+    
+}
+
+
+.myHeaderMenuStrip{
+    background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #dbad4b), color-stop(1, #47943d) );
+    background:-moz-linear-gradient( center top, #dbad4b 5%, #47943d 100% );
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#dbad4b', endColorstr='#47943d');
+    background-color:#dbad4b;
+    -moz-border-radius:6px;
+    -webkit-border-radius:6px;
+    border-radius:6px;
+    border:2px solid #0a030a;
+    display:inline-block;
+    color:#ffffff;
+    font-family:Verdana;
+    font-size:13px;
+    font-weight:bold;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-decoration:none;
+    text-shadow:1px 1px 3px #614261;
+    width: 725px;
+    height: 15px;
+    text-align: center;
+}.myHeaderMenuStrip:hover {
+    background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #47943d), color-stop(1, #dbad4b) );
+    background:-moz-linear-gradient( center top, #47943d 5%, #dbad4b 100% );
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#47943d', endColorstr='#dbad4b');
+    background-color:#47943d;
+}.myHeaderMenuStrip:active {
+    position:relative;
+    top:1px;
+}
+
+.headerMenueLink{
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.adminVMenuItemLInk{
+    width: inherit;
+    color: darkgreen;
+    font-family: cursive;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+a{
+    text-decoration: none;
+}
