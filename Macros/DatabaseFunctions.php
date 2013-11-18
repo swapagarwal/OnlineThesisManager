@@ -48,7 +48,8 @@ function getLastDate($class) {
         $flag = FALSE;
         while ($row = mysql_fetch_assoc($result)) {
             $flag = TRUE;
-            session_start();
+            if(!isset($_SESSION['admin_user_nm'])&&!isset($_SESSION['user_nm'])&&!isset($_SESSION['faculty_user_nm']))
+                session_start();
             $_SESSION['last_date'] =convertMySQLDateIntoPHPTime($row['last_date']." 18:00:00");
         }
         if ($flag == TRUE) {
@@ -136,7 +137,7 @@ function getAllRecords() {
                                  </tr>
                                  <tr>
                                    <td style="width:50%;color:green">Submitted at:</td>
-                                   <td>' . date("d-F-Y H:i:s", convertMySQLDateIntoPHPTime($row[submitted_at])) . '</td>
+                                   <td>' . date("d-F-Y H:i:s", convertMySQLDateIntoPHPTime($row['submitted_at'])) . '</td>
                                  </tr>
                                  <tr>
                                    <td style="width:50%;color:green">Is Late?:</td>
@@ -160,7 +161,8 @@ function getAllRecords() {
         $inerhtml = $inerhtml . '</table>';
         if ($flag == TRUE) {
             $result = "DONE";
-            session_start();
+            if(!isset($_SESSION['admin_user_nm'])&&!isset($_SESSION['user_nm'])&&!isset($_SESSION['faculty_user_nm']))
+                session_start();
             $_SESSION['innerHTMLSimple'] = $inerhtml;
         } else {
             $result = "NOT_FOUND";

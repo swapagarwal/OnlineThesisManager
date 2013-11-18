@@ -15,6 +15,8 @@
             } else {
                 $pageStatus = "REQUESTED";
             }
+            
+            $pass = sha1($pass);
         }
 //        if (isset($_GET['pageStatus'])) {
 //            if ($_GET['pageStatus'] == "001") {
@@ -45,6 +47,7 @@
                 $pageStatus = "INVALID";
             }
         }
+        
         ?>
     </head>
     <body>

@@ -10,7 +10,7 @@ $name = $_POST['txtName'];
 $roll = $_POST['txtRoll'];
 $userNm = $_POST['txtUserName'];
 $class = $_POST['radioClass'];
-$pass = $_POST['txtPassword'];
+$pass = sha1($_POST['txtPassword']);
 $advisor_id=$_POST['comboAdvisor'];
 
 //Forward to login page if not authenticated.

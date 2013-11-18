@@ -8,7 +8,7 @@
 define("HOST11", "http://localhost/ProjectUploader");
 define("HOSTNAME", "localhost");
 define("USERNAME", "root");
-define("PASS", "project");
+define("PASS", "");
 define("DBNAME", "project");
 
 
@@ -21,7 +21,7 @@ function getPasswordPattern() {
 }
 
 function getRollPattern(){
-    return "/^[0-9]{7,8}$/";
+    return "/^[0-9]{7,9}$/";
 }
 
 function getNamePattern(){

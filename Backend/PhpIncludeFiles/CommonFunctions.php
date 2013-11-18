@@ -55,7 +55,8 @@ function getLastDate($class) {
         $flag = FALSE;
         while ($row = mysql_fetch_assoc($result)) {
             $flag = TRUE;
-            session_start();
+            if(!isset($_SESSION['admin_user_nm'])&&!isset($_SESSION['user_nm'])&&!isset($_SESSION['faculty_user_nm']))
+                session_start();
             $_SESSION['admin_last_date'] = convertMySQLDateIntoPHPTime($row['last_date']." 16:00:00");
         }
         if ($flag == TRUE) {

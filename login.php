@@ -6,7 +6,9 @@
         <link rel="stylesheet" href="<?php echo constant("HOST11") . '/web/css/UserStyleSheet.css' ?>" type="text/css" />
         <title>Online Thesis Manager</title>
         <?php
+       
         $pageStatus = "NEW";
+
         if (isset($_POST['txtUserNm'])) {
             $user_nm = $_POST['txtUserNm'];
             $pass = $_POST['txtPass'];
@@ -15,14 +17,36 @@
             } else {
                 $pageStatus = "REQUESTED";
             }
+            $pass = sha1($pass);
         }
-        $user_type=$_POST['user_type'];
+
+        
+        if(isset($_POST['user_type']))
+            $user_type=$_POST['user_type'];
 //        if (isset($_GET['pageStatus'])) {
 //            if ($_GET['pageStatus'] == "001") {
 //                $pageStatus = "INVALID";
 //            }
 //        }
-        if ($pageStatus == "REQUESTED") {
+        
+        session_start();
+        
+       // print_r($_SESSION);
+        //echo $_SESSION['faculty_user_nm'];
+        
+        if(isset($_SESSION['user_nm'])||isset($_SESSION['admin_user_nm'])||isset($_SESSION['faculty_user_nm'])){
+            $pageStatus = "LOGGEDIN";
+        }
+            
+        if($pageStatus == "LOGGEDIN"){
+            if (isset($_SESSION['user_nm'])) {
+                header("Location: " . constant("HOST11") . "/index.php");
+            }else if (isset($_SESSION['faculty_user_nm'])) {
+                header("Location: " . constant("HOST11") . "/faculty/index.php");
+            }else if (isset($_SESSION['admin_user_nm'])) {
+                header("Location: " . constant("HOST11") . "/Backend/index.php");
+            }
+        } else if ($pageStatus == "REQUESTED") {
             $result = "NOTFOUND";
             if (!($con = mysql_connect(constant("HOSTNAME"), constant("USERNAME"), constant("PASS")))) {
                 $result = "DBCONNECTION_ERROR";
@@ -34,7 +58,6 @@
                     $rs = mysql_query($sql);
                     while ($row = mysql_fetch_assoc($rs)) {
                         $result = "FOUND";
-                        session_start();
                         $_SESSION['user_nm'] = $user_nm;
                         $_SESSION['name'] = $row['name'];
                         $_SESSION['roll_number'] = $row['roll_number'];
@@ -48,7 +71,6 @@
                     $rs = mysql_query($sql);
                     while ($row = mysql_fetch_assoc($rs)) {
                         $result = "FOUND";
-                        session_start();
                         $_SESSION['faculty_user_nm'] = $user_nm;
                         $_SESSION['faculty_name'] = $row['advisor_name'];
                     }
@@ -57,7 +79,6 @@
                     $rs = mysql_query($sql);
                     while ($row = mysql_fetch_assoc($rs)) {
                         $result = "FOUND";
-                        session_start();
                         $_SESSION['admin_user_nm'] = $user_nm;
                         $_SESSION['admin_name'] = $row['name'];
                         $_SESSION['role'] = $row['role'];

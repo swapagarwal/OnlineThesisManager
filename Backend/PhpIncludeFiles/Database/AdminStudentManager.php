@@ -160,7 +160,7 @@ function getAllStudents($class) {
             $inerhtml = $inerhtml . '<tr style="background-color: menu;color: black">';
             $inerhtml = $inerhtml . '<td style="width: 10px" align="center">' . $counter . '</td>';
             $inerhtml = $inerhtml . '<td style="width: 250px" align="center">' . $row["name"] . '</td>';
-            $inerhtml = $inerhtml . '<td style="width: 80px" align="center"><a href="' . constant("HOST11") . '/Backend/Student/student_edit.php?roll=' . $row[roll_number] . '">' . $row[roll_number] . '</a></td>';
+            $inerhtml = $inerhtml . '<td style="width: 80px" align="center"><a href="' . constant("HOST11") . '/Backend/Student/student_edit.php?roll=' . $row['roll_number'] . '">' . $row['roll_number'] . '</a></td>';
             $inerhtml = $inerhtml . '<td style="width: 50px" align="center">' . $fullClass . '</td>';
             $inerhtml = $inerhtml . '<td style="width: 200px" align="center">' . $row["user_nm"] . '</td>';
             $inerhtml = $inerhtml . '<td style="width: 150px" align="center">' . $row["password"] . '</td>';
@@ -170,7 +170,8 @@ function getAllStudents($class) {
         $inerhtml = $inerhtml . '</table>';
         if ($flag == TRUE) {
             $result = "DONE";
-            session_start();
+            if(!isset($_SESSION['admin_user_nm'])&&!isset($_SESSION['user_nm'])&&!isset($_SESSION['faculty_user_nm']))
+                session_start();
             $_SESSION['innerHTMLSimple'] = $inerhtml;
         } else {
             $result = "NOT_FOUND";

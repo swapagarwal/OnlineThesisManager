@@ -29,7 +29,6 @@
                     <div id="studentContentHeader">Result Dialog</div>
                     <div id="studentTableContatiner">
                         <?php
-                        session_start();
                         echo $_SESSION["queryResult"];
                         unset($_SESSION["queryResult"]);
                         ?>

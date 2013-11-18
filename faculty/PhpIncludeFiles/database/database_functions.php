@@ -53,7 +53,7 @@ function getAllStudents($class, $advisor) {
             }
             $inerhtml = $inerhtml . '<div id="TSrlNoValue">' . $counter . '</div>';
             $inerhtml = $inerhtml . '<div id="RollNoValue">
-                                       <a href="'.constant("HOST11").'/faculty/PhpIncludeFiles/GetPermissionHistory.php?user_nm='.$row[user_nm].'" onclick="window.open(\''.constant("HOST11").'/faculty/PhpIncludeFiles/GetPermissionHistory.php?user_nm='.$row["user_nm"].'\',\'popup\',\'width=500,height=500,scrollbars=no,resizable=no,toolbar=no,directories=no,location=no,menubar=no,status=no,left=0,top=0\'); return false">'.$row[roll_number].'</a></div>';
+                                       <a href="'.constant("HOST11").'/faculty/PhpIncludeFiles/GetPermissionHistory.php?user_nm='.$row['user_nm'].'" onclick="window.open(\''.constant("HOST11").'/faculty/PhpIncludeFiles/GetPermissionHistory.php?user_nm='.$row["user_nm"].'\',\'popup\',\'width=500,height=500,scrollbars=no,resizable=no,toolbar=no,directories=no,location=no,menubar=no,status=no,left=0,top=0\'); return false">'.$row['roll_number'].'</a></div>';
             $inerhtml = $inerhtml . '<div id="NameValue">' . $row["name"] . '</div>';
             $inerhtml = $inerhtml . '<div id="ThesisLinkValue">' . $thesisLinkString . '</div>';
             $inerhtml = $inerhtml . '<div id="PermissionValue"><input type="button" 
@@ -64,7 +64,8 @@ function getAllStudents($class, $advisor) {
         }
         if ($flag == TRUE) {
             $result = "DONE";
-            session_start();
+            if(!isset($_SESSION['user_nm'])&&!isset($_SESSION['admin_user_nm'])&&!isset($_SESSION['fac_user_nm']))
+                session_start();
             $_SESSION['innerHTMLSimple'] = $inerhtml;
         } else {
             $result = "NOT_FOUND";
@@ -104,6 +105,7 @@ function changePasswd($faculty_id,$pass, $pass1) {
     } else if (!($select = mysql_select_db(constant("DBNAME"), $con))) {
         $result = "DBCONNECTION_ERROR";
     } else {
+        $pass1 = sha1($pass1);
         $sql = "UPDATE advisor SET pass='$pass1',last_modified_at='".date( 'Y-m-d H:i:s')."' WHERE advisor_id='$faculty_id'";
         $sql_result = mysql_query($sql);
         if (mysql_affected_rows() >= 1) {

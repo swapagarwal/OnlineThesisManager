@@ -52,7 +52,7 @@ function getAllStudents($class) {
             }
             $inerhtml = $inerhtml . '<div id="TSrlNoValue">' . $counter . '</div>';
             $inerhtml = $inerhtml . '<div id="RollNoValue">
-                                       <a href="'.constant("HOST11").'/Backend/PhpIncludeFiles/GetPermissionHistory.php?user_nm='.$row[user_nm].'" onclick="window.open(\''.constant("HOST11").'/Backend/PhpIncludeFiles/GetPermissionHistory.php?user_nm='.$row["user_nm"].'\',\'popup\',\'width=500,height=500,scrollbars=no,resizable=no,toolbar=no,directories=no,location=no,menubar=no,status=no,left=0,top=0\'); return false">'.$row[roll_number].'</a></div>';
+                                       <a href="'.constant("HOST11").'/Backend/PhpIncludeFiles/GetPermissionHistory.php?user_nm='.$row['user_nm'].'" onclick="window.open(\''.constant("HOST11").'/Backend/PhpIncludeFiles/GetPermissionHistory.php?user_nm='.$row["user_nm"].'\',\'popup\',\'width=500,height=500,scrollbars=no,resizable=no,toolbar=no,directories=no,location=no,menubar=no,status=no,left=0,top=0\'); return false">'.$row['roll_number'].'</a></div>';
             $inerhtml = $inerhtml . '<div id="NameValue">' . $row["name"] . '</div>';
             $inerhtml = $inerhtml . '<div id="ThesisLinkValue">' . $thesisLinkString . '</div>';
             $inerhtml = $inerhtml . '<div id="PermissionValue"><input type="button" 
@@ -63,7 +63,8 @@ function getAllStudents($class) {
         }
         if ($flag == TRUE) {
             $result = "DONE";
-            session_start();
+            if(!isset($_SESSION['admin_user_nm'])&&!isset($_SESSION['user_nm'])&&!isset($_SESSION['faculty_user_nm']))
+                session_start();
             $_SESSION['innerHTMLSimple'] = $inerhtml;
         } else {
             $result = "NOT_FOUND";

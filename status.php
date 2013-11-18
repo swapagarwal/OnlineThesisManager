@@ -15,7 +15,7 @@
         }
         
         $result = getAllRecords();
-        
+                
         ?>
     </head>
     <body>

@@ -1,11 +1,15 @@
 <?php
 
 include 'config/config.php';
+
+/*print_r($_GET);
+echo preg_match(getThesisFileNamePattern(), $_GET['fn']);*/
+
 if (isset($_GET['fn'])
         && preg_match(getThesisFileNamePattern(), $_GET['fn'])
         && ($_GET['cls'] == "BT" || $_GET['cls'] == "MT")) {
 
-    $path = '../Upload/' . $_GET['cls'] . '/' . $_GET['fn']; // the file made available for download via this PHP file
+    $path = './Upload/' . $_GET['cls'] . '/' . $_GET['fn']; // the file made available for download via this PHP file
     if (file_exists($path)) {
         $mm_type = "application/pdf"; // modify accordingly to the file type of $path, but in most cases no need to do so
         header("Pragma: public");

@@ -17,7 +17,8 @@ function isInFileFormat($fileName, $format) {
 
 function changePasswd($pass, $pass1) {
     $result;
-    session_start();
+    if(!isset($_SESSION['admin_user_nm'])&&!isset($_SESSION['user_nm'])&&!isset($_SESSION['faculty_user_nm']))
+        session_start();
     $userName = $_SESSION['user_nm'];
     if ((!preg_match(getPasswordPattern(), $pass))
             || (!preg_match(getPasswordPattern(), $pass1))) {
@@ -27,6 +28,7 @@ function changePasswd($pass, $pass1) {
     } else if (!($select = mysql_select_db(constant("DBNAME"), $con))) {
         $result = "DBCONNECTION_ERROR";
     } else {
+        $pass1 = sha1($pass1);
         $sql = "UPDATE student SET password='$pass1',pass_changed='YES',pass_changed_at='" . date("Y-m-d") . "',last_modified_by='" . $_SESSION['name'] . "[" . $userName . "]' WHERE user_nm='$userName'";
         $result = mysql_query($sql);
         if (mysql_affected_rows() >= 1) {

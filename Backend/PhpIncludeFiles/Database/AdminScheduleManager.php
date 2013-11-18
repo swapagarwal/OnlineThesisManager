@@ -45,7 +45,8 @@ function getAllSchedules(){
         $inerhtml = $inerhtml . '</table>';
         if ($flag == TRUE) {
             $result = "DONE";
-            session_start();
+            if(!isset($_SESSION['admin_user_nm'])&&!isset($_SESSION['user_nm'])&&!isset($_SESSION['faculty_user_nm']))
+                session_start();
             $_SESSION['innerHTMLSimple'] = $inerhtml;
         } else {
             $result = "NOT_FOUND";

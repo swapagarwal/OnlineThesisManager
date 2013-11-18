@@ -11,9 +11,10 @@
         ?>
         <?php
         require 'Macros/CommonFunctions.php';
-        $pass = $_REQUEST["currentPass"];
+        if(isset($_REQUEST["newPass1"]))
+            $pass = $_REQUEST["currentPass"];
         $error="";
-        if (isset($pass)) {
+        if (isset($pass) && isset($_REQUEST["newPass1"])) {
             $pass1 = $_REQUEST["newPass1"];
             $pass2 = $_REQUEST["newPass2"];
             if (isset($pass) && isset($pass1) && isset($pass2)) {

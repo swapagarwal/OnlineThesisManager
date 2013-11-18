@@ -88,11 +88,11 @@
             </div>
             <div id="adminMiddle">
                 <?php
-                if(1==1){
+                /*if(1==1){
                     echo '<div style="color: green;font-size: 28px; text-align: center;width: 100%">****Welcome, ' . strtoupper($_SESSION['name']) . '****</div>';
                     echo '<div style="padding-left: 50px; font-size: 20px; color: red"><br/><br/><br/><br/><br/><b>Sorry you are late</div>';
-                    echo '<br/>The application is now closed. Contact admin in case of any problem.'
-                }else if ($pageResult == "PASS_NOT_CHANGED") {
+                    echo '<br/>The application is now closed. Contact admin in case of any problem.';
+                } else*/ if ($pageResult == "PASS_NOT_CHANGED") {
                     echo '<div style="color: green;font-size: 28px; text-align: center;width: 100%">****Welcome, ' . strtoupper($_SESSION['name']) . '****</div>';
                     echo '<div style="padding-left: 50px; font-size: 20px; color: red"><br/><br/><br/><br/><br/><b>YOU HAVE TO CHANGE YOUR PASSWORD FIRST.</div>';
                 } else if ($pageResult == "NO_PERMISSION") {

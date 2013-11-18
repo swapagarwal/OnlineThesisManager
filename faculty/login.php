@@ -15,6 +15,8 @@
             } else {
                 $pageStatus = "REQUESTED";
             }
+            
+            $pass = sha1($pass);
         }
 //        if (isset($_GET['pageStatus'])) {
 //            if ($_GET['pageStatus'] == "001") {
@@ -28,6 +30,7 @@
             } else if (!($select = mysql_select_db(constant("DBNAME"), $con))) {
                 $result = "DBCONNECTION_ERROR";
             } else {
+                echo $pass;
                 $sql = "SELECT advisor_name FROM advisor WHERE advisor_id='" . $user_nm . "' and pass='" . $pass . "'";
                 $rs = mysql_query($sql);
                 while ($row = mysql_fetch_assoc($rs)) {
