@@ -242,5 +242,60 @@ function getAllFacultiesForEditForm($advisor_id) {
     mysql_close($con);
     return $result;
 }
+ function getAllStudentss($class,$name) {
+    $result;
+    if (!($con = mysql_connect(constant("HOSTNAME"), constant("USERNAME"), constant("PASS")))) {
+        $result = "DBCONNECTION_ERROR";
+    } else if (!($select = mysql_select_db(constant("DBNAME"), $con))) {
+        $result = "DBCONNECTION_ERROR";
+    } else {
+    $sql="";
+    if($name=="")
+        $sql = "SELECT name,roll_number,user_nm,password from student where class='" . $class . "'";
+    else
+        $sql = "SELECT name,roll_number,user_nm,password from student where class='" . $class . "' AND name LIKE '%".$name."%'";
+        //echo $sql;
+        $result = mysql_query($sql);
+        $flag = FALSE;
+        $counter = 0;
+        $inerhtml = ' <table border="0" align="center" style="height: 100%; width: 100%">
+                       <tr>
+                                <td style="width: 10px;color: #990000">S.N.</td>
+                                <td style="width: 250px;text-align: center;color: #990000">Name</td>
+                                <td style="width: 80px; text-align: center;color: #990000">Roll</td>
+                                <td style="width: 50px; text-align: center;color: #990000">Class</td>
+                                <td style="width: 200px;text-align: center;color: #990000">User Name</td>
+                                <td style="width: 150px;text-align: center;color: #990000">Password</td>
+                            </tr>';
+        while ($row = mysql_fetch_assoc($result)) {
+            $flag = TRUE;
+            $counter++;
+            if ($class == "BT") {
+                $fullClass = "B.Tech";
+            } else {
+                $fullClass = "M.Tech";
+            }
 
+            $inerhtml = $inerhtml . '<tr style="background-color: menu;color: black">';
+            $inerhtml = $inerhtml . '<td style="width: 10px" align="center">' . $counter . '</td>';
+            $inerhtml = $inerhtml . '<td style="width: 250px" align="center">' . $row["name"] . '</td>';
+            $inerhtml = $inerhtml . '<td style="width: 80px" align="center"><a href="' . constant("HOST11") . '/Backend/Student/student_edit.php?roll=' . $row["roll_number"] . '">' . $row["roll_number"] . '</a></td>';
+            $inerhtml = $inerhtml . '<td style="width: 50px" align="center">' . $fullClass . '</td>';
+            $inerhtml = $inerhtml . '<td style="width: 200px" align="center">' . $row["user_nm"] . '</td>';
+            $inerhtml = $inerhtml . '<td style="width: 150px" align="center">' . $row["password"] . '</td>';
+            $inerhtml = $inerhtml . '</tr>';
+            $inerhtml = $inerhtml . '<tr><td colspan="6" style="height:2px;background-color: gray"></td></tr>';
+        }
+        $inerhtml = $inerhtml . '</table>';
+        if ($flag == TRUE) {
+            $result = "DONE";
+           // session_start();
+            $_SESSION['innerHTMLSimple'] = $inerhtml;
+        } else {
+            $result = "NOT_FOUND";
+        }
+    }
+    mysql_close($con);
+    return $result;
+    }
 ?>

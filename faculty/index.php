@@ -34,6 +34,7 @@
                         <div id="bTName">Name</div>
                         <div id="bTThesisLink">Thesis Link</div>
                         <div id="bTPermission">Permission</div>
+						<div id="bTPlagiarism">Plagiarism</div>
                         <div id="bTStatus">Status</div>
                     </div>
                 </div>

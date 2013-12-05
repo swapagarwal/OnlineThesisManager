@@ -35,8 +35,26 @@
     border-top-width: 3px;
     border-top-color: #009933;
 }
-
-
+#adminMiddle{
+    padding-left: 210px;
+    width: 730px;
+    background-color: #ffffff;
+    min-height: 600px;
+/*    float: left;*/
+}
+#adminMiddleContent{
+    width: 730px;
+   
+}
+#adminMiddleContent2{
+      width: 730px;
+      text-align: center;
+      font-family: Verdana,Arial,Helvetica,sans-serif;
+      font-size: 17px;
+      border-bottom-style: dashed;
+      color: darkgreen;
+    
+}
 
 .formTable{
     width: 700px;

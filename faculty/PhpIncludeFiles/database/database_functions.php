@@ -45,6 +45,7 @@ function getAllStudents($class, $advisor) {
                 $thesisLinkString='<a href="'.constant("HOST11").'/GetThesisPDF.php?fn='.$row["roll_number"].'-'.$class.'PI.pdf&cls='.$class.'">Click Here</a>';
             }
             
+			$plaigiarismLinkString='<a href="'.constant("HOST11").'/Upload/'.$class.'/Report/'.$row["roll_number"].'-'.$class.'PI/summary.html" target="_blank">View</a>';
             
             if ($counter % 2 == 0) {
                 $inerhtml = $inerhtml . '<div id="ListEvenRow">';
@@ -59,12 +60,13 @@ function getAllStudents($class, $advisor) {
             $inerhtml = $inerhtml . '<div id="PermissionValue"><input type="button" 
                                      value="Grant Permission" name="permission" 
                                      onclick="getPermission(\''.$row["user_nm"].'\',\''.$_SESSION["faculty_user_nm"].'\',\'StatusValue'.$class.'_'.$counter.'\')"/></div>';
+			$inerhtml = $inerhtml . '<div id="Plaigiarism">' . $plaigiarismLinkString . '</div>';
             $inerhtml = $inerhtml . '<div id="StatusValue'.$class.'_'.$counter.'" style="StatusValue">'.$permission_string.'</div>';
             $inerhtml = $inerhtml . '</div>';
         }
         if ($flag == TRUE) {
             $result = "DONE";
-            if(!isset($_SESSION['user_nm'])&&!isset($_SESSION['admin_user_nm'])&&!isset($_SESSION['fac_user_nm']))
+            if(!isset($_SESSION['user_nm'])&&!isset($_SESSION['admin_user_nm'])&&!isset($_SESSION['faculty_user_nm']))
                 session_start();
             $_SESSION['innerHTMLSimple'] = $inerhtml;
         } else {
@@ -135,7 +137,8 @@ function getAllUploadHistory($stud_id){
         if($student_name=="NONE"){
             return "STUDENT_NOT_FOUND";
         }else{
-            session_start();
+            if(!isset($_SESSION['user_nm'])&&!isset($_SESSION['admin_user_nm'])&&!isset($_SESSION['faculty_user_nm']))
+                session_start();
             $_SESSION['student_name']=$student_name;
         }
         

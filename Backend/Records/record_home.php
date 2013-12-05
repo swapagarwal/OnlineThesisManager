@@ -17,6 +17,15 @@
         
         $roll = "MT";
         $pageCounter = 1;
+		$option="";
+        $text="";
+        
+        if(isset($_GET['option']))
+        $option=$_GET['option'];
+        
+        if(isset($_GET['text']))
+        $text=$_GET['text'];
+		
         if (isset($_GET['class'])) {
             $roll = $_GET['class'];
             if ($roll != "MT" && $roll != "BT") {
@@ -27,11 +36,21 @@
             $pageCounter = $_GET['pageCount'];
         }
         if ($roll != "NONE") {
-            $result = getAllRecords($roll, $pageCounter);
+            $result = getAllRecordss($roll, $pageCounter,$option,$text);
         } else {
             $result = "NONE";
         }
         ?>
+	<script>
+            function myFunction()
+            {
+              var x1=document.getElementById("select").value;
+              var x2=document.getElementById("searchbox").value;
+              var x3=document.getElementById("submit").value;
+              var x4="<?php echo constant("HOST11") . '/Backend/Records/record_home.php?class=' ?>"+x3+"&pageCount=1&option="+x1+"&text="+x2;
+              window.location.assign(x4);
+             }
+        </script>
     </head>
     <body>
         <div id="bodyPanel">
@@ -47,6 +66,21 @@
                     ||<a class="headerMenueLink" href="<?php echo constant("HOST11") . '/Backend/Records/record_home.php?class=BT&pageCount=1' ?>">&nbsp;B. Tech&nbsp;</a>||
                     <a class="headerMenueLink" href="<?php echo constant("HOST11") . '/Backend/Records/record_home.php?class=MT&pageCount=1' ?>" >&nbsp;M.Tech&nbsp</a>||
                 </div>
+				<div>
+                                <center>
+                                
+                                      <select name="option" id="select">
+                                       <option value="Roll">Roll number</option>
+                                       <option value="Name">Name</option>
+                                       <option value="Advisor">Advisor Name</option>
+                                       <option value="thesis">Abstract</option>
+                                       <option value="topic">Topic</option>
+                                      </select>
+                                      <input type="text" id="searchbox">
+                                      <button onclick="myFunction();" id="submit" value="<?php echo $roll;?>">Search</button>
+                                
+                                </center>
+                  </div>
                 <div id="adminMiddleContent">
                     <div id="studentListingResult">
                         <?php

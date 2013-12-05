@@ -9,6 +9,17 @@ include '../config/config.php';
 session_start();
 unset($_SESSION['faculty_user_nm']);
 unset($_SESSION['faculty_name']);
+
+
+if(isset($_COOKIE['rem_usertype']))
+{ 
+//$time = time(); 
+                            setcookie("rem_usertype", "", -1, '/');
+                            setcookie("rem_faculty_user_nm", "", -1, '/');
+                            setcookie("rem_faculty_name", "", -1, '/');
+
+}
+
 //header("Location: ".constant("HOST11")."/faculty/login.php");
 header("Location: ".constant("HOST11")."/login.php");
 ?>

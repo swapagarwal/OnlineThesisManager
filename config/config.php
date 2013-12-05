@@ -21,7 +21,7 @@ function getPasswordPattern() {
 }
 
 function getRollPattern(){
-    return "/^[0-9]{7,9}$/";
+    return "/^[0-9]{7,8}$/";
 }
 
 function getNamePattern(){

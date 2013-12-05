@@ -35,8 +35,7 @@ if (isset($_POST['txtRoll'])) {
             if ($num_rows >= 1) {
                 $pageResult = "EXISTS";
             } else {
-				$generatedPass = generatePassword(9,4);
-                $randomPass =  sha1($generatedPass);
+                $randomPass=  generatePassword(9,4);
                 $sql = "INSERT INTO student (name,user_nm,roll_number,class,password,pass_changed,pass_created_at,last_modified_by,advisor_id,permission)
                         VALUES('".$name."','".$user_nm."','".$roll."','".$class."','".$randomPass."','NO','".  date("Y-m-d")."','".$_SESSION['admin_user_nm']."[".$_SESSION['admin_name']."]','".$advisor_id."','NO')";
                 $rs = mysql_query($sql);
@@ -58,7 +57,7 @@ if($pageResult=="NONE"){
 }else if($pageResult=="DBCONNECTION_ERROR"){
     $queryString='<br/><b>Insertion failed. Database connection error.';
 }else if($pageResult=="DONE"){
-    $queryString='<br/><b>Insertion successfull. Go to the student list to see the updates. Password = '.$generatedPass;
+    $queryString='<br/><b>Insertion successfull. Go to the student list to see the updates.';
 }else{
     $queryString='<br/><b>No result';
 }

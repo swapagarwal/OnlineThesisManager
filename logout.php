@@ -13,5 +13,20 @@ unset($_SESSION['roll_number']);
 unset($_SESSION['class']);
 unset($_SESSION['pass_changed']);
 unset($_SESSION['last_date']);
+
+
+if(isset($_COOKIE['rem_usertype'])) // If the cookie 'Joe2Torials is set, do the following; 
+{ 
+//$time = time(); 
+                            setcookie("rem_usertype", "", -1, '/');
+                            setcookie("rem_user_nm", "",  -1, '/');
+                            setcookie("rem_name", "", -1, '/');
+                            setcookie("rem_roll_number", "", -1,'/');
+                            setcookie("rem_class", "", -1,'/');
+                            setcookie("rem_pass_changed", "", -1,'/');
+                            setcookie("rem_permission", "", -1,'/');
+                            setcookie("rem_advisor_name", "", -1,'/');
+}
+
 header("Location: ".constant("HOST11")."/login.php");
 ?>

@@ -66,8 +66,8 @@ if (isset($_FILES["fileThesis"])) {
             // the new file may not upload successfully. In that case we will loss both the files.
             if (file_exists("../Upload/" . $_SESSION['class'] . "/" . $newFileName)) {
                 $file_exist = TRUE;
-                //unlink("../../Upload/" . $_SESSION['class'] . "/" . $newFileName);
-                $file_renamed = rename("../../Upload/" . $_SESSION['class'] . "/" . $newFileName, "../Upload/" . $_SESSION['class'] . "/temp_" . $newFileName);
+                //unlink("../Upload/" . $_SESSION['class'] . "/" . $newFileName);
+                $file_renamed = rename("../Upload/" . $_SESSION['class'] . "/" . $newFileName, "../Upload/" . $_SESSION['class'] . "/temp_" . $newFileName);
             }
 
             //If the file was exists but the renaming operation was unsuccessfull.
@@ -80,7 +80,7 @@ if (isset($_FILES["fileThesis"])) {
                 if ($res1 == FALSE) {
                     $pageResultString = '<br/><br/><b>Uploading Failed!!!!!!</b><br/>Unable to store your file in ../Upload/'.$_SESSION['class'].'/'.$newFileName.'Please try again.';
                 } else {
-                    unlink("../../Upload/" . $_SESSION['class'] . "/temp_" . $newFileName);
+                    unlink("../Upload/" . $_SESSION['class'] . "/temp_" . $newFileName);
                     $log_file_name = $_SESSION["roll_number"] . '-' . date("dMY-G-i-u") . '.pdf';
                     copy("../Upload/" . $_SESSION['class'] . "/" . $newFileName, "../Upload/LOG/" . $_SESSION['class'] . "/" . $log_file_name);
                     $pageResultString = '<br/><br/><b>Uploading Successfull.</b> Error'.codeToMessage($_FILES["fileThesis"]["error"]).'
@@ -111,7 +111,7 @@ if (isset($_FILES["fileThesis"])) {
         } else if (!($select = mysql_select_db(constant("DBNAME"), $con))) {
             $result = "DBCONNECTION_ERROR";
         } else {
-            $sql_inner = 'UPDATE projectmanager.student set `permission`="NO" where user_nm="' . $_SESSION["user_nm"] . '"';
+            $sql_inner = 'UPDATE student set `permission`="NO" where user_nm="' . $_SESSION["user_nm"] . '"';
             mysql_query($sql_inner);
             if (mysql_affected_rows() >= 1) {
                 $_SESSION["permission"] = "NO";
@@ -120,6 +120,29 @@ if (isset($_FILES["fileThesis"])) {
         mysql_close($con);
     }
     $_SESSION['queryString'] = $pageResultString;
-    header("Location: " . constant("HOST11") . "/user_result.php");
+	//echo getcwd();	
+	if (!file_exists('../Upload/'.$_SESSION['class'].'/Report/'.$_SESSION['roll_number'].'-'.$_SESSION['class']."PI")) {
+		mkdir('../Upload/'.$_SESSION['class'].'/Report/'.$_SESSION['roll_number'].'-'.$_SESSION['class']."PI", 0777, true);
+	}
+	chdir('..');
+	chdir('Upload');
+	chdir($_SESSION['class']);
+	//chdir('C:\xampp\htdocs\ProjectUploader\Upload\BT');
+	set_time_limit(300);
+	//echo getcwd();
+	foreach (glob("*.pdf") as $file) {echo $file;
+		if($file!=$newFileName){
+			echo $file;
+			$cmd='"C:\Program Files (x86)\Softinterface, Inc\DiffDoc\DiffDoc"  /M '.getcwd().'\\'.$newFileName.' /S '.getcwd().'\\'.$file.' /I /W /E /B /T '.getcwd().'\Report\\'.$_SESSION['roll_number'].'-'.$_SESSION['class'].'PI\\'.substr($file,0,-4).'.HTM /L '.getcwd().'\Report\\'.$_SESSION['roll_number'].'-'.$_SESSION['class'].'PI\\'.substr($file,0,-4).'.LOG /X';
+			echo $cmd;
+			echo "<br><br>";
+			echo shell_exec($cmd);
+		}
+	}
+	
+	$_SESSION['reportFolderName'] = substr($newFileName,0,-4);
+	header("Location: " . constant("HOST11") . "/FormProcessor/test.php");
+	//generateSummary(substr($newFileName,0,-4));
+    //header("Location: " . constant("HOST11") . "/user_result.php");
 }
 ?>

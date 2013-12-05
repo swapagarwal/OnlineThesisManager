@@ -49,6 +49,12 @@ html, body{
     min-height: 600px;
 }
 
+#adminMiddle2{
+    width: 940px;
+    background-color: #ffffff;
+    min-height: 500px;
+}
+
 #adminFooter{
     width: inherit;
     background-color: green;
@@ -198,28 +204,35 @@ For Index page
     text-align: center;
 }
 #bTName{
-    width: 250px;
+    width: 200px;
     height: inherit;
     color: inherit;
     float: left;
     text-align: center;
 }
 #bTThesisLink{
-    width: 100px;
+    width: 90px;
     height: inherit;
     color: inherit;
     float: left;
     text-align: center;
 }
 #bTPermission{
-    width: 200px;
+    width: 170px;
+    height: inherit;
+    color: inherit;
+    float: left;
+    text-align: center;
+}
+#bTPlagiarism{
+    width: 70px;
     height: inherit;
     color: inherit;
     float: left;
     text-align: center;
 }
 #bTStatus{
-    width: 200px;
+    width: 220px;
     height: inherit;
     color: inherit;
     float: left;
@@ -337,29 +350,36 @@ For Index page
     text-align: center;
 }
 #NameValue{
-    width: 250px;
+    width: 200px;
     height: inherit;
     color: inherit;
     float: left;
     text-align: center;
 }
 #ThesisLinkValue{
-    width: 100px;
+    width: 90px;
     height: inherit;
     color: inherit;
     float: left;
     text-align: center;
 }
 #PermissionValue{
-    width: 200px;
+    width: 170px;
     height: inherit;
     color: inherit;
     float: left;
     text-align: center;
 }
 
+#Plaigiarism{
+    width: 70px;
+    height: inherit;
+    color: inherit;
+    float: left;
+    text-align: center;
+}
 .StatusValue{
-    width: 200px;
+    width: 220px;
     height: inherit;
     color: inherit;
     float: left;
@@ -367,4 +387,114 @@ For Index page
 }
 
 
+/***********
+    ADDED
+************/
+#bmessagePanel{
+    padding-top: 30px;
+    width: 940px;
+    float: left;
+}
+#messagePanelTitle{
+    width: inherit;
+    height: 30px;
+    text-align: center;
+    color: #006600;
+    
+    font-family: Verdana;
+    font-size: 18px;
+    font-weight: bold;
+}
+#messagePanelInfo{
+    width: inherit;
+    height: 20px;
+    text-align: center;
+    color: blue;
+    
+    font-family: Verdana;
+    font-size: 13px;
+    font-weight: normal;
+}
+#messageListHeader{
+    width: 940px;
+    background-color: #cccccc;
+    float: left;
+    height: 25px;
+    color: black;
+    
+    font-family: Verdana;
+    font-size: 14px;
+    font-weight: bold;
+}
+#messageSrlNo{
+    width: 100px;
+    height: inherit;
+    color: inherit;
+    float: left;
+    text-align: center;
+}
+#messageRollNo{
+    width: 150px;
+    height: inherit;
+    float: left;
+    color: inherit;
+    text-align: center;
+}
+#messageName{
+    width: 400px;
+    height: inherit;
+    color: inherit;
+    float: left;
+    text-align: center;
+}
+#messageText{
+    width: 120px;
+    height: inherit;
+    color: inherit;
+    float: left;
+    text-align: center;
+}
+#messageReply{
+    width: 150px;
+    height: inherit;
+    color: inherit;
+    float: left;
+    text-align: center;
+}
 
+#messageSrlNoValue{
+    width: 100px;
+    height: inherit;
+    color: inherit;
+    float: left;
+    text-align: center;
+}
+#messageRollNoValue{
+    width: 150px;
+    height: inherit;
+    float: left;
+    color: inherit;
+    text-align: center;
+}
+#messageNameValue{
+    width: 400px;
+    height: inherit;
+    color: inherit;
+    float: left;
+    text-align: center;
+}
+#messageTextValue{
+    font-size: 12px;
+    width: 120px;
+    height: inherit;
+    color: inherit;
+    float: left;
+    text-align: center;
+}
+#messageReplyValue{
+    width: 150px;
+    height: inherit;
+    color: inherit;
+    float: left;
+    text-align: center;
+}

@@ -19,9 +19,14 @@
             $roll = $_POST['radioClass'];
         } else {
             $roll = "MT";
-        }
-        $result = getAllUploadHistory($roll);
+        }        
+		$value="";
+           if(isset($_POST['searchbox']))
+           $value=$_POST['searchbox'];
+            
+           $result = getAllUploadHistorys($roll,$value);
         ?>
+        
         <script language="javascript">
             function searchSelector(){
                 document.forms["classSelecter"].submit();
@@ -48,9 +53,13 @@
                                     <td class="formTableColLabel">Select Class:</td>
                                     <td class="formTableColField">
                                         B.Tech<input type="radio" name="radioClass"  value="BT" onclick="searchSelector()" />
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        
                                         M.Tech<input type="radio" name="radioClass" value="MT" onclick="searchSelector()" />
                                     </td>
+									
+        <td class="formTableColLabel">Search:</td>
+        <td class=="formTableColField"><input type="text" name='searchbox'></td>
+        <td class=="formTableColField"><button type="submit" value="<?php echo $roll;?>" name="radioClass">Search</button>
                                     <td class="formTableColHelp"></td>
                                 </tr>
                                 <tr><td colspan="3" style="height: 10px"></td></tr>

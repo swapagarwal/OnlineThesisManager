@@ -146,5 +146,78 @@ function getAllUploadHistory($stud_id){
     mysql_close($con);
     return $result;
 }
+function getAllStudentss($class,$name) {
+    $result="NONE";
+    if (!($con = mysql_connect(constant("HOSTNAME"), constant("USERNAME"), constant("PASS")))) {
+        $result = "DBCONNECTION_ERROR";
+    } else if (!($select = mysql_select_db(constant("DBNAME"), $con))) {
+        $result = "DBCONNECTION_ERROR";
+    } else {
+        $sql="";
+        if($name=="")
+        $sql = "SELECT name,roll_number,S.user_nm as user_nm,permission,IFNULL( report_file_name, 'Not Uploaded' ) AS report_file_name FROM student as S LEFT OUTER JOIN projects as P ON S.user_nm=P.user_nm  WHERE class='" . $class . "'";
+        else
+        $sql = "SELECT name,roll_number,S.user_nm as user_nm,permission,IFNULL( report_file_name, 'Not Uploaded' ) AS report_file_name FROM student as S LEFT OUTER JOIN projects as P ON S.user_nm=P.user_nm  WHERE class='" . $class . "' AND name LIKE '%".$name."%'";
+        
+        
+        $sql_result = mysql_query($sql);
+        $flag = FALSE;
+        $counter = 0;
+        $inerhtml = '';
+        while ($row = mysql_fetch_assoc($sql_result)) {
+            $flag = TRUE;
+            $counter++;
+            if ($class == "BT") {
+                $fullClass = "B.Tech";
+            } else {
+                $fullClass = "M.Tech";
+            }
+//<a href="'.constant("HOST11").'/GetThesisPDF.php?fn='.$row["roll_number"].'-'.$row['class'].'PI.pdf&cls='.$row["class"].'">'.$row["roll_number"].'-'.$row['class'].'PI.pdf</a>
+            /*             * ********************************************** */
+            //Get the total number of permission granted.
+//            $sql_inner_result = mysql_query("");
+//            while ($row = mysql_fetch_array($sql_inner_result)) {
+//                $total_permission = $row[0];
+//            }
+            /*             * ********************************************** */
+            if($row["permission"]=="YES"){
+                $permission_string='<span style="color: green">Permission granted.</span>';
+            }else{
+                $permission_string='<span style="color: red">Permission disabled.</span>';
+            }
+            
+            $thesisLinkString="Not Uploaded";
+            if($row["report_file_name"]!="Not Uploaded"){
+                $thesisLinkString='<a href="'.constant("HOST11").'/GetThesisPDF.php?fn='.$row["roll_number"].'-'.$class.'PI.pdf&cls='.$class.'">Click Here</a>';
+            }
+            
+            
+            if ($counter % 2 == 0) {
+                $inerhtml = $inerhtml . '<div id="ListEvenRow">';
+            } else {
+                $inerhtml = $inerhtml . '<div id="ListOddRow">';
+            }
+            $inerhtml = $inerhtml . '<div id="TSrlNoValue">' . $counter . '</div>';
+            $inerhtml = $inerhtml . '<div id="RollNoValue">
+                                       <a href="'.constant("HOST11").'/Backend/PhpIncludeFiles/GetPermissionHistory.php?user_nm='.$row["user_nm"].'" onclick="window.open(\''.constant("HOST11").'/Backend/PhpIncludeFiles/GetPermissionHistory.php?user_nm='.$row["user_nm"].'\',\'popup\',\'width=500,height=500,scrollbars=no,resizable=no,toolbar=no,directories=no,location=no,menubar=no,status=no,left=0,top=0\'); return false">'.$row["roll_number"].'</a></div>';
+            $inerhtml = $inerhtml . '<div id="NameValue">' . $row["name"] . '</div>';
+            $inerhtml = $inerhtml . '<div id="ThesisLinkValue">' . $thesisLinkString . '</div>';
+            $inerhtml = $inerhtml . '<div id="PermissionValue"><input type="button" 
+                                     value="Grant" name="permission" 
+                                     onclick="getPermission(\''.$row["user_nm"].'\',\''.$_SESSION["admin_user_nm"].'\',\'StatusValue'.$counter.'\')"/></div>';
+            $inerhtml = $inerhtml . '<div id="StatusValue'.$counter.'">'.$permission_string.'</div>';
+            $inerhtml = $inerhtml . '</div>';
+        }
+        if ($flag == TRUE) {
+            $result = "DONE";
+            //session_start();
+            $_SESSION['innerHTMLSimple'] = $inerhtml;
+        } else {
+            $result = "NOT_FOUND";
+        }
+    }
+    mysql_close($con);
+    return $result;
+}
 
 ?>

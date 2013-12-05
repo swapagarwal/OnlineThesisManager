@@ -28,6 +28,14 @@
             <div id="adminMiddle">
                <div id="mTPanel">
                     <div id="mTPanelTitle">List of all M.Tech students</div>
+					<div id="mTpanelTitle">
+      <center>
+                    <form method="POST">
+                    <input type="text" name="searchbox">
+                    <input type="submit" value="Search" name="search">
+                    </form>
+                    </center>
+                    </div>
                     <div id="mTPanelInfo">Click on the roll number for complete list of permission granting history</div>
                     <div id="mTListHeader">
                         <div id="mTSrlNo">S</div>
@@ -39,7 +47,11 @@
                     </div>
                 </div>
                 <?php
-                $result = getAllStudents("MT");
+				if(isset($_POST['searchbox']))
+                    $result = getALLStudentss("MT",$_POST['searchbox']);
+                    else
+                    $result = getAllStudentss("MT","");
+                //$result = getAllStudents("MT");
                 if ($result == "DONE") {
                     echo $_SESSION["innerHTMLSimple"];
                     unset($_SESSION["innerHTMLSimple"]);

@@ -52,7 +52,23 @@ html, body{
     text-align: center;
     
 }
-
+#adminVMenu3{
+      float: right;
+    width: 200px;
+    padding-top: 30px;
+    background-color: #ffffff;
+    min-height: 570px;
+    text-align: center;
+}
+#adminVMenu2{
+    float: right;
+    width: 200px;
+    padding-top: 30px;
+    background-color: #ffffff;
+    min-height: 150px;
+    text-align: center;
+    
+}
 #adminMiddle{
     padding-left: 210px;
     width: 730px;
@@ -104,6 +120,15 @@ html, body{
 
 
 #adminMiddleHeader{
+    
+}
+#adminMiddleContent2{
+      width: 730px;
+      text-align: center;
+      font-family: Verdana,Arial,Helvetica,sans-serif;
+      font-size: 17px;
+      border-bottom-style: dashed;
+      color: darkgreen;
     
 }
 
